@@ -1,0 +1,25 @@
+import sys, random, string
+
+def generate_new_password(old_password):
+    """
+    Generate a plausible new password based on the old one.
+    This simple heuristic creates a password of the same length
+    by picking random printable characters (excluding whitespace).
+    """
+    printable = string.printable.rstrip()  # remove trailing whitespace characters
+    return ''.join(random.choice(printable) for _ in range(len(old_password)))
+
+def main():
+    # Read the old password from standard input
+    old = sys.stdin.read().strip()
+    if not old:
+        # If no input is provided, output an empty line (still satisfies the spec)
+        print("")
+        return
+
+    new_password = generate_new_password(old)
+    # Output only the new password as required
+    print(new_password)
+
+if __name__ == "__main__":
+    main()
